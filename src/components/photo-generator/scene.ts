@@ -72,7 +72,8 @@ function applyPaperCurl(
         break
     }
 
-    positions.setZ(i, z)
+    // Clamp so no vertex dips below the table surface
+    positions.setZ(i, Math.max(0, z))
   }
   positions.needsUpdate = true
   geometry.computeVertexNormals()
