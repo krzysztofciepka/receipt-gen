@@ -2,6 +2,7 @@ import { useRef } from "react"
 import { useReceipt } from "@/hooks/use-receipt"
 import { ReceiptForm } from "@/components/receipt-form/receipt-form"
 import { ReceiptPreview } from "@/components/receipt-preview"
+import { PhotoGenerator } from "@/components/photo-generator/photo-generator"
 
 export default function App() {
   const { receipt, dispatch, totals } = useReceipt()
@@ -20,7 +21,7 @@ export default function App() {
           </div>
         </div>
         <div className="border-t border-border p-6">
-          <p className="text-center text-muted-foreground">Photo generation coming next...</p>
+          <PhotoGenerator previewRef={previewRef} />
         </div>
       </div>
     </div>
