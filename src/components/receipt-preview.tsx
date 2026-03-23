@@ -23,8 +23,12 @@ export function ReceiptPreview({ receipt, totals, previewRef }: ReceiptPreviewPr
   return (
     <div
       ref={previewRef}
-      className="w-[300px] bg-white px-4 py-6 font-mono text-xs leading-relaxed text-black"
-      style={{ fontFamily: "'Courier New', Courier, monospace" }}
+      className="w-[300px] px-4 py-6 text-xs leading-relaxed"
+      style={{
+        fontFamily: "'Courier New', Courier, monospace",
+        backgroundColor: "#ffffff",
+        color: "#000000",
+      }}
     >
       {/* Header */}
       <div className="text-center font-bold">{receipt.storeName}</div>
