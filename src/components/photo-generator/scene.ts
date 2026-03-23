@@ -129,11 +129,14 @@ export async function generatePhoto(
     roughness: 0.9,
     metalness: 0.0,
     side: THREE.DoubleSide,
+    transparent: false,
+    depthWrite: true,
   })
   const receiptMesh = new THREE.Mesh(receiptGeometry, receiptMaterial)
   receiptMesh.rotation.x = -Math.PI / 2
   receiptMesh.rotation.z = angleConfig.receiptRotationZ
-  receiptMesh.position.y = 0.01
+  receiptMesh.position.y = 0.05
+  receiptMesh.renderOrder = 1
   receiptMesh.castShadow = true
   scene.add(receiptMesh)
 
