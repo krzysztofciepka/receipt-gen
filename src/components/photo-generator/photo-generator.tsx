@@ -24,6 +24,18 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
         scale: 2,
         backgroundColor: "#ffffff",
         useCORS: true,
+        onclone: (clonedDoc) => {
+          // html2canvas cannot parse OKLCH color functions used by Tailwind CSS 4.
+          // Remove all stylesheets and inline a minimal reset on the cloned document
+          // so html2canvas only sees standard hex colors.
+          clonedDoc.querySelectorAll("style, link[rel='stylesheet']").forEach((el) => el.remove())
+          const style = clonedDoc.createElement("style")
+          style.textContent = `
+            *, *::before, *::after { border-color: transparent; outline-color: transparent; }
+            body { background: #ffffff; color: #000000; margin: 0; }
+          `
+          clonedDoc.head.appendChild(style)
+        },
       })
       const blob = await generatePhoto(canvas, surface, angle)
       const url = URL.createObjectURL(blob)
