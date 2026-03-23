@@ -50,11 +50,11 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
     label: "Dark",
     icon: "🖥️",
     createLighting: () => ({
-      ambientColor: 0x222222,
-      ambientIntensity: 0.3,
+      ambientColor: 0x888888,
+      ambientIntensity: 0.5,
       pointColor: 0xffffff,
-      pointIntensity: 1.0,
-      pointPosition: [0, 4, 0],
+      pointIntensity: 1.2,
+      pointPosition: [0, 4, 1],
     }),
   },
 }
