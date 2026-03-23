@@ -143,21 +143,21 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
       {/* Surface presets */}
       <div className="space-y-2">
         <Label className="text-xs font-medium text-muted-foreground">Surface</Label>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-4 gap-2 md:grid-cols-7">
           {(Object.entries(surfaceConfigs) as [SurfacePreset, typeof surfaceConfigs.wood][]).map(
             ([key, config]) => (
               <button
                 key={key}
                 onClick={() => setSurface(key)}
                 className={cn(
-                  "flex flex-1 flex-col items-center gap-1 rounded-lg border p-3 text-sm transition-colors",
+                  "flex flex-col items-center gap-1 rounded-lg border p-2 text-xs transition-colors md:p-3 md:text-sm",
                   surface === key
                     ? "border-primary bg-primary/5 text-foreground"
                     : "border-border text-muted-foreground hover:border-primary/50",
                 )}
               >
-                <span className="text-lg">{config.icon}</span>
-                <span>{config.label}</span>
+                <span className="text-base md:text-lg">{config.icon}</span>
+                <span className="truncate">{config.label}</span>
               </button>
             ),
           )}
@@ -167,21 +167,21 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
       {/* Angle presets */}
       <div className="space-y-2">
         <Label className="text-xs font-medium text-muted-foreground">Angle</Label>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-5 gap-2 md:grid-cols-9">
           {(Object.entries(angleConfigs) as [AnglePreset, typeof angleConfigs.flat][]).map(
             ([key, config]) => (
               <button
                 key={key}
                 onClick={() => setAngle(key)}
                 className={cn(
-                  "flex flex-1 flex-col items-center gap-1 rounded-lg border p-3 text-sm transition-colors",
+                  "flex flex-col items-center gap-1 rounded-lg border p-2 text-xs transition-colors md:p-3 md:text-sm",
                   angle === key
                     ? "border-primary bg-primary/5 text-foreground"
                     : "border-border text-muted-foreground hover:border-primary/50",
                 )}
               >
                 {angleIcons[key]}
-                <span>{config.label}</span>
+                <span className="truncate">{config.label}</span>
               </button>
             ),
           )}
