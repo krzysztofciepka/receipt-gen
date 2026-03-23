@@ -16,24 +16,24 @@ export function ReceiptDetailsSection({ receipt, dispatch }: ReceiptDetailsSecti
     <div className="space-y-2">
       <div className="grid grid-cols-2 gap-2">
         <div className="space-y-1">
-          <Label className="text-xs text-muted-foreground">Beleg-Nr.</Label>
+          <Label className="text-xs text-muted-foreground">Receipt #</Label>
           <Input
-            placeholder="Beleg-Nr."
+            placeholder="Receipt #"
             value={receipt.receiptNumber}
             onChange={(e) => set("receiptNumber", e.target.value)}
           />
         </div>
         <div className="space-y-1">
-          <Label className="text-xs text-muted-foreground">Datum</Label>
+          <Label className="text-xs text-muted-foreground">Date</Label>
           <Input
-            placeholder="TT.MM.JJJJ HH:MM"
+            placeholder="DD.MM.YYYY HH:MM"
             value={receipt.date}
             onChange={(e) => set("date", e.target.value)}
           />
         </div>
       </div>
       <div className="space-y-1">
-        <Label className="text-xs text-muted-foreground">Kassierer/in</Label>
+        <Label className="text-xs text-muted-foreground">Cashier</Label>
         <Input
           placeholder="Name"
           value={receipt.cashier}

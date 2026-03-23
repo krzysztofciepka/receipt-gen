@@ -15,7 +15,7 @@ export function ItemsSection({ receipt, dispatch }: ItemsSectionProps) {
       {receipt.items.map((item, i) => (
         <div key={i} className="flex items-center gap-1.5">
           <Input
-            placeholder="Artikelname"
+            placeholder="Item name"
             value={item.name}
             onChange={(e) =>
               dispatch({ type: "SET_ITEM", index: i, field: "name", value: e.target.value })
@@ -68,7 +68,7 @@ export function ItemsSection({ receipt, dispatch }: ItemsSectionProps) {
         className="w-full text-muted-foreground"
       >
         <Plus className="mr-1 size-3.5" />
-        + Artikel hinzufügen
+        + Add Item
       </Button>
     </div>
   )

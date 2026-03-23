@@ -39,19 +39,19 @@ function Section({ title, defaultOpen = true, children }: SectionProps) {
 export function ReceiptForm({ receipt, dispatch, totals }: ReceiptFormProps) {
   return (
     <div className="space-y-2">
-      <Section title="Geschäftsdaten">
+      <Section title="Store Information">
         <StoreInfoSection receipt={receipt} dispatch={dispatch} />
       </Section>
-      <Section title="Belegdetails">
+      <Section title="Receipt Details">
         <ReceiptDetailsSection receipt={receipt} dispatch={dispatch} />
       </Section>
-      <Section title="Artikel">
+      <Section title="Items">
         <ItemsSection receipt={receipt} dispatch={dispatch} />
       </Section>
-      <Section title="Zahlung">
+      <Section title="Payment">
         <PaymentSection receipt={receipt} dispatch={dispatch} totals={totals} />
       </Section>
-      <Section title="Fußzeile & QR-Code">
+      <Section title="Footer & QR Code">
         <FooterSection receipt={receipt} dispatch={dispatch} />
       </Section>
     </div>

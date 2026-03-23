@@ -25,7 +25,7 @@ export interface AngleConfig {
 
 export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
   wood: {
-    label: "Holz",
+    label: "Wood",
     icon: "🪵",
     createLighting: () => ({
       ambientColor: 0xfff5e6,
@@ -36,7 +36,7 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
     }),
   },
   marble: {
-    label: "Marmor",
+    label: "Marble",
     icon: "🪨",
     createLighting: () => ({
       ambientColor: 0xf0f0ff,
@@ -47,7 +47,7 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
     }),
   },
   dark: {
-    label: "Dunkel",
+    label: "Dark",
     icon: "🖥️",
     createLighting: () => ({
       ambientColor: 0x222222,
@@ -61,7 +61,7 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
 
 export const angleConfigs: Record<AnglePreset, AngleConfig> = {
   flat: {
-    label: "Flach",
+    label: "Flat",
     cameraPosition: [0, 5, 0.01],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
@@ -69,7 +69,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     wrinkle: false,
   },
   angled: {
-    label: "Schräg",
+    label: "Angled",
     cameraPosition: [1, 4.5, 1],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: -Math.PI / 12,
@@ -77,7 +77,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     wrinkle: false,
   },
   perspective: {
-    label: "Perspektive",
+    label: "Perspective",
     cameraPosition: [0, 2.5, 4.3],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
@@ -85,7 +85,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     wrinkle: false,
   },
   crumpled: {
-    label: "Zerknittert",
+    label: "Crumpled",
     cameraPosition: [0.2, 4, 0.8],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: Math.PI / 36,

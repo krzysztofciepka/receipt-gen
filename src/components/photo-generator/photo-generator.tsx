@@ -53,7 +53,7 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
     <div className="space-y-4">
       {/* Surface presets */}
       <div className="space-y-2">
-        <Label className="text-xs font-medium text-muted-foreground">Oberfläche</Label>
+        <Label className="text-xs font-medium text-muted-foreground">Surface</Label>
         <div className="flex gap-2">
           {(Object.entries(surfaceConfigs) as [SurfacePreset, typeof surfaceConfigs.wood][]).map(
             ([key, config]) => (
@@ -77,7 +77,7 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
 
       {/* Angle presets */}
       <div className="space-y-2">
-        <Label className="text-xs font-medium text-muted-foreground">Winkel</Label>
+        <Label className="text-xs font-medium text-muted-foreground">Angle</Label>
         <div className="flex gap-2">
           {(Object.entries(angleConfigs) as [AnglePreset, typeof angleConfigs.flat][]).map(
             ([key, config]) => (
@@ -100,7 +100,7 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
 
       {/* Generate button */}
       <Button onClick={handleGenerate} disabled={generating} className="w-full" size="lg">
-        {generating ? "Wird generiert..." : "Foto generieren & herunterladen"}
+        {generating ? "Generating..." : "Generate Photo & Download"}
       </Button>
     </div>
   )

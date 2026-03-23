@@ -14,12 +14,12 @@ export function FooterSection({ receipt, dispatch }: FooterSectionProps) {
   return (
     <div className="space-y-2">
       <Input
-        placeholder="QR-Code Inhalt (optional)"
+        placeholder="QR code content (optional)"
         value={receipt.qrCode}
         onChange={(e) => set("qrCode", e.target.value)}
       />
       <Input
-        placeholder="Fußzeile"
+        placeholder="Footer message"
         value={receipt.footer}
         onChange={(e) => set("footer", e.target.value)}
       />

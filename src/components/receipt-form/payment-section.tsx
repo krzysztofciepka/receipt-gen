@@ -32,8 +32,8 @@ export function PaymentSection({ receipt, dispatch, totals }: PaymentSectionProp
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="Karte">Karte</SelectItem>
-            <SelectItem value="Bar">Bar</SelectItem>
+            <SelectItem value="Karte">Card (Karte)</SelectItem>
+            <SelectItem value="Bar">Cash (Bar)</SelectItem>
           </SelectContent>
         </Select>
         <div className="flex items-center gap-1.5">
@@ -61,7 +61,7 @@ export function PaymentSection({ receipt, dispatch, totals }: PaymentSectionProp
         type="number"
         min={0}
         step={0.01}
-        placeholder={`Bezahlt (auto = ${formatCurrency(totals.total)})`}
+        placeholder={`Amount paid (auto = ${formatCurrency(totals.total)})`}
         value={receipt.amountPaid}
         onChange={(e) =>
           dispatch({ type: "SET_FIELD", field: "amountPaid", value: e.target.value })
@@ -71,11 +71,11 @@ export function PaymentSection({ receipt, dispatch, totals }: PaymentSectionProp
       {/* Totals */}
       <div className="space-y-1 rounded-lg bg-muted/50 p-3 font-mono text-sm">
         <div className="flex justify-between">
-          <span className="text-muted-foreground">ZWISCHENSUMME</span>
+          <span className="text-muted-foreground">SUBTOTAL</span>
           <span>{formatCurrency(totals.subtotal)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-muted-foreground">NETTO</span>
+          <span className="text-muted-foreground">NET</span>
           <span>{formatCurrency(totals.net)}</span>
         </div>
         <div className="flex justify-between">
@@ -86,17 +86,17 @@ export function PaymentSection({ receipt, dispatch, totals }: PaymentSectionProp
         </div>
         <Separator />
         <div className="flex justify-between font-bold">
-          <span>GESAMT</span>
+          <span>TOTAL</span>
           <span>{formatCurrency(totals.total)}</span>
         </div>
         {receipt.paymentMethod === "Bar" && (
           <>
             <div className="flex justify-between text-muted-foreground">
-              <span>Bezahlt</span>
+              <span>Paid</span>
               <span>{formatCurrency(totals.paid)}</span>
             </div>
             <div className="flex justify-between text-muted-foreground">
-              <span>Rückgeld</span>
+              <span>Change</span>
               <span>{formatCurrency(totals.change)}</span>
             </div>
           </>

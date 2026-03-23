@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div className="flex h-screen bg-background text-foreground">
       <div className="w-[440px] shrink-0 overflow-y-auto border-r border-border p-6">
-        <h1 className="mb-4 text-lg font-semibold">Belegdaten</h1>
+        <h1 className="mb-4 text-lg font-semibold">Receipt Data</h1>
         <ReceiptForm receipt={receipt} dispatch={dispatch} totals={totals} />
       </div>
       <div className="flex flex-1 flex-col overflow-y-auto">
