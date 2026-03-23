@@ -3,8 +3,9 @@ import type { SurfacePreset, AnglePreset } from "@/types"
 import { surfaceConfigs, angleConfigs } from "./presets"
 import { createWoodTexture, createMarbleTexture, createDarkDeskTexture, createGraniteTexture, createTableclothTexture, createLeatherTexture, createConcreteTexture } from "./textures"
 
-const OUTPUT_WIDTH = 1920
-const OUTPUT_HEIGHT = 1440
+// 9:16 vertical — typical smartphone photo
+const OUTPUT_WIDTH = 1080
+const OUTPUT_HEIGHT = 1920
 
 function createSurfaceTexture(preset: SurfacePreset): THREE.CanvasTexture {
   switch (preset) {
