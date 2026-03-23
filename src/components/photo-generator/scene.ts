@@ -3,8 +3,8 @@ import type { SurfacePreset, AnglePreset } from "@/types"
 import { surfaceConfigs, angleConfigs } from "./presets"
 import { createWoodTexture, createMarbleTexture, createDarkDeskTexture } from "./textures"
 
-const OUTPUT_WIDTH = 1920
-const OUTPUT_HEIGHT = 1440
+const OUTPUT_WIDTH = 1280
+const OUTPUT_HEIGHT = 960
 
 function createSurfaceTexture(preset: SurfacePreset): THREE.CanvasTexture {
   switch (preset) {
@@ -50,11 +50,13 @@ function applyPaperCurl(
 
 function addFilmGrain(ctx: CanvasRenderingContext2D, width: number, height: number): void {
   const imageData = ctx.getImageData(0, 0, width, height)
-  for (let i = 0; i < imageData.data.length; i += 4) {
-    const noise = (Math.random() - 0.5) * 20
-    imageData.data[i] = Math.min(255, Math.max(0, imageData.data[i] + noise))
-    imageData.data[i + 1] = Math.min(255, Math.max(0, imageData.data[i + 1] + noise))
-    imageData.data[i + 2] = Math.min(255, Math.max(0, imageData.data[i + 2] + noise))
+  const data = imageData.data
+  const len = data.length
+  for (let i = 0; i < len; i += 4) {
+    const noise = (Math.random() * 16 - 8) | 0
+    data[i] = data[i] + noise
+    data[i + 1] = data[i + 1] + noise
+    data[i + 2] = data[i + 2] + noise
   }
   ctx.putImageData(imageData, 0, 0)
 }
@@ -155,7 +157,7 @@ export async function generatePhoto(
     postCanvas.toBlob(
       (b) => (b ? resolve(b) : reject(new Error("Failed to create blob"))),
       "image/jpeg",
-      0.92,
+      0.85,
     )
   })
 
