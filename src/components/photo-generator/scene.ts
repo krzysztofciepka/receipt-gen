@@ -93,7 +93,7 @@ export async function generatePhoto(
 
   const scene = new THREE.Scene()
 
-  const camera = new THREE.PerspectiveCamera(40, OUTPUT_WIDTH / OUTPUT_HEIGHT, 0.1, 100)
+  const camera = new THREE.PerspectiveCamera(55, OUTPUT_WIDTH / OUTPUT_HEIGHT, 0.1, 100)
   camera.position.set(...angleConfig.cameraPosition)
   camera.lookAt(new THREE.Vector3(...angleConfig.cameraLookAt))
 
