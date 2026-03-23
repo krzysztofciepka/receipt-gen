@@ -73,17 +73,17 @@ function MobileLayout({ receipt, dispatch, totals, previewRef }: {
         <h1 className="text-base font-semibold">Receipt Generator</h1>
         <SettingsMenu />
       </div>
-      <Tabs defaultValue="form" className="flex flex-1 flex-col overflow-hidden">
+      <Tabs defaultValue={0} className="flex flex-1 flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
-          <TabsContent value="form" className="mt-0 p-4">
+          <TabsContent value={0} className="mt-0 p-4">
             <ReceiptForm receipt={receipt} dispatch={dispatch} totals={totals} />
           </TabsContent>
-          <TabsContent value="preview" className="mt-0 flex justify-center bg-muted/30 p-4">
+          <TabsContent value={1} className="mt-0 flex justify-center bg-muted/30 p-4">
             <div className="rounded-md shadow-lg">
               <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
             </div>
           </TabsContent>
-          <TabsContent value="generate" className="mt-0 p-4">
+          <TabsContent value={2} className="mt-0 p-4">
             <div className="mb-4 flex justify-center bg-muted/30 rounded-lg p-4">
               <div className="rounded-md shadow-lg scale-75 origin-top">
                 <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
@@ -93,15 +93,15 @@ function MobileLayout({ receipt, dispatch, totals, previewRef }: {
           </TabsContent>
         </div>
         <TabsList className="w-full rounded-none border-t border-border bg-background p-0 h-14">
-          <TabsTrigger value="form" className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value={0} className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-active:bg-muted">
             <FileText className="size-4" />
             Form
           </TabsTrigger>
-          <TabsTrigger value="preview" className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value={1} className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-active:bg-muted">
             <Eye className="size-4" />
             Preview
           </TabsTrigger>
-          <TabsTrigger value="generate" className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value={2} className="flex-1 flex-col gap-0.5 rounded-none py-2 text-xs data-active:bg-muted">
             <Camera className="size-4" />
             Generate
           </TabsTrigger>
