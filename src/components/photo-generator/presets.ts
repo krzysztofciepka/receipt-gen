@@ -76,9 +76,25 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     curlIntensity: 0.05,
     wrinkle: false,
   },
-  perspective: {
-    label: "Perspective",
-    cameraPosition: [0, 2.5, 4.3],
+  "perspective-30": {
+    label: "30°",
+    cameraPosition: [0, 2.5, 4.33],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: 0,
+    curlIntensity: 0.06,
+    wrinkle: false,
+  },
+  "perspective-45": {
+    label: "45°",
+    cameraPosition: [0, 3.54, 3.54],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: 0,
+    curlIntensity: 0.08,
+    wrinkle: false,
+  },
+  "perspective-60": {
+    label: "60°",
+    cameraPosition: [0, 4.33, 2.5],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
     curlIntensity: 0.08,
