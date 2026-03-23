@@ -125,7 +125,7 @@ export async function generatePhoto(
   receiptTexture.magFilter = THREE.LinearFilter
 
   const aspect = receiptCanvas.height / receiptCanvas.width
-  const receiptWidth = 1.0
+  const receiptWidth = 0.7
   const receiptHeight = receiptWidth * aspect
 
   const receiptGeometry = new THREE.PlaneGeometry(receiptWidth, receiptHeight, 32, 64)
