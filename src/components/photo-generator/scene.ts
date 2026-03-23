@@ -3,8 +3,8 @@ import type { SurfacePreset, AnglePreset } from "@/types"
 import { surfaceConfigs, angleConfigs } from "./presets"
 import { createWoodTexture, createMarbleTexture, createDarkDeskTexture } from "./textures"
 
-const OUTPUT_WIDTH = 1280
-const OUTPUT_HEIGHT = 960
+const OUTPUT_WIDTH = 1920
+const OUTPUT_HEIGHT = 1440
 
 function createSurfaceTexture(preset: SurfacePreset): THREE.CanvasTexture {
   switch (preset) {
@@ -157,7 +157,7 @@ export async function generatePhoto(
     postCanvas.toBlob(
       (b) => (b ? resolve(b) : reject(new Error("Failed to create blob"))),
       "image/jpeg",
-      0.85,
+      0.92,
     )
   })
 
