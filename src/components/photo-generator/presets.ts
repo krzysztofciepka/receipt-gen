@@ -19,6 +19,7 @@ export interface AngleConfig {
   cameraPosition: [number, number, number]
   cameraLookAt: [number, number, number]
   receiptRotationZ: number
+  receiptScale: number
   curlIntensity: number
   wrinkle: boolean
 }
@@ -109,6 +110,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraPosition: [0, 2.8, 0.01],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
+    receiptScale: 1.0,
     curlIntensity: 0.02,
     wrinkle: false,
   },
@@ -117,6 +119,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraPosition: [0.3, 2.8, 0.3],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: -Math.PI / 20,
+    receiptScale: 0.7,
     curlIntensity: 0.05,
     wrinkle: false,
   },
@@ -125,6 +128,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraPosition: [0, 2.4, 1.4],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
+    receiptScale: 1.0,
     curlIntensity: 0.08,
     wrinkle: false,
   },
@@ -133,6 +137,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraPosition: [0, 2.7, 0.72],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
+    receiptScale: 1.0,
     curlIntensity: 0.05,
     wrinkle: false,
   },
@@ -141,6 +146,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraPosition: [0.1, 2.6, 0.4],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: Math.PI / 36,
+    receiptScale: 1.0,
     curlIntensity: 0.12,
     wrinkle: true,
   },
