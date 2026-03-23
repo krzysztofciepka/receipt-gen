@@ -21,7 +21,7 @@ export interface ReceiptData {
   footer: string
 }
 
-export type SurfacePreset = "wood" | "marble" | "dark"
+export type SurfacePreset = "wood" | "marble" | "dark" | "granite" | "tablecloth" | "leather" | "concrete"
 
 export type AnglePreset = "flat" | "angled" | "perspective-30" | "perspective-45" | "perspective-60" | "crumpled"
 

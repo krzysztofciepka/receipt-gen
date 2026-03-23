@@ -57,6 +57,50 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
       pointPosition: [0, 4, 1],
     }),
   },
+  granite: {
+    label: "Granite",
+    icon: "🪨",
+    createLighting: () => ({
+      ambientColor: 0xe8e8e8,
+      ambientIntensity: 0.5,
+      pointColor: 0xffffff,
+      pointIntensity: 0.7,
+      pointPosition: [1, 5, 2],
+    }),
+  },
+  tablecloth: {
+    label: "Tablecloth",
+    icon: "🍽️",
+    createLighting: () => ({
+      ambientColor: 0xfff8f0,
+      ambientIntensity: 0.5,
+      pointColor: 0xfffae6,
+      pointIntensity: 0.7,
+      pointPosition: [1, 4, 1],
+    }),
+  },
+  leather: {
+    label: "Leather",
+    icon: "💼",
+    createLighting: () => ({
+      ambientColor: 0x998877,
+      ambientIntensity: 0.4,
+      pointColor: 0xffeedd,
+      pointIntensity: 0.9,
+      pointPosition: [2, 4, 1],
+    }),
+  },
+  concrete: {
+    label: "Concrete",
+    icon: "🏗️",
+    createLighting: () => ({
+      ambientColor: 0xdddddd,
+      ambientIntensity: 0.5,
+      pointColor: 0xffffff,
+      pointIntensity: 0.8,
+      pointPosition: [0, 5, 2],
+    }),
+  },
 }
 
 export const angleConfigs: Record<AnglePreset, AngleConfig> = {

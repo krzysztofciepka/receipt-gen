@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import type { SurfacePreset, AnglePreset } from "@/types"
 import { surfaceConfigs, angleConfigs } from "./presets"
-import { createWoodTexture, createMarbleTexture, createDarkDeskTexture } from "./textures"
+import { createWoodTexture, createMarbleTexture, createDarkDeskTexture, createGraniteTexture, createTableclothTexture, createLeatherTexture, createConcreteTexture } from "./textures"
 
 const OUTPUT_WIDTH = 1920
 const OUTPUT_HEIGHT = 1440
@@ -11,6 +11,10 @@ function createSurfaceTexture(preset: SurfacePreset): THREE.CanvasTexture {
     case "wood": return createWoodTexture()
     case "marble": return createMarbleTexture()
     case "dark": return createDarkDeskTexture()
+    case "granite": return createGraniteTexture()
+    case "tablecloth": return createTableclothTexture()
+    case "leather": return createLeatherTexture()
+    case "concrete": return createConcreteTexture()
   }
 }
 
