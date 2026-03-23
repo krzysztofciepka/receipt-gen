@@ -106,7 +106,7 @@ export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
 export const angleConfigs: Record<AnglePreset, AngleConfig> = {
   flat: {
     label: "Flat",
-    cameraPosition: [0, 5, 0.01],
+    cameraPosition: [0, 3.5, 0.01],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
     curlIntensity: 0.02,
@@ -114,15 +114,15 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
   },
   angled: {
     label: "Angled",
-    cameraPosition: [1, 4.5, 1],
+    cameraPosition: [0.5, 3.5, 0.5],
     cameraLookAt: [0, 0, 0],
-    receiptRotationZ: -Math.PI / 12,
+    receiptRotationZ: -Math.PI / 16,
     curlIntensity: 0.05,
     wrinkle: false,
   },
   "perspective-60": {
     label: "60°",
-    cameraPosition: [0, 4.33, 2.5],
+    cameraPosition: [0, 3.0, 1.73],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
     curlIntensity: 0.08,
@@ -130,7 +130,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
   },
   "perspective-75": {
     label: "75°",
-    cameraPosition: [0, 4.83, 1.29],
+    cameraPosition: [0, 3.4, 0.9],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: 0,
     curlIntensity: 0.05,
@@ -138,7 +138,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
   },
   crumpled: {
     label: "Crumpled",
-    cameraPosition: [0.2, 4, 0.8],
+    cameraPosition: [0.15, 3.2, 0.5],
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: Math.PI / 36,
     curlIntensity: 0.12,
