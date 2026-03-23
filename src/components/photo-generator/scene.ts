@@ -20,15 +20,28 @@ function applyPaperCurl(
   wrinkle: boolean,
 ): void {
   const positions = geometry.attributes.position
+  const params = geometry.parameters
+  const halfW = params.width / 2
+  const halfH = params.height / 2
+
   for (let i = 0; i < positions.count; i++) {
     const x = positions.getX(i)
     const y = positions.getY(i)
-    const edgeFactor = Math.abs(x) / 0.75
-    let z = curlIntensity * edgeFactor * edgeFactor * Math.sin(y * 3)
+
+    // Gentle upward curl at the long edges (top/bottom of receipt)
+    const yNorm = y / halfH // -1 to 1
+    let z = curlIntensity * yNorm * yNorm
+
+    // Slight lateral curl at left/right edges
+    const xNorm = x / halfW // -1 to 1
+    z += curlIntensity * 0.3 * xNorm * xNorm
+
     if (wrinkle) {
-      z += (Math.random() - 0.5) * curlIntensity * 0.3
-      z += Math.sin(x * 15 + y * 10) * curlIntensity * 0.2
+      // Subtle low-frequency waviness, not random noise
+      z += curlIntensity * 0.15 * Math.sin(xNorm * 4 + yNorm * 3)
+      z += curlIntensity * 0.1 * Math.sin(xNorm * 2 - yNorm * 5)
     }
+
     positions.setZ(i, z)
   }
   positions.needsUpdate = true
