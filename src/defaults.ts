@@ -1,14 +1,20 @@
 import type { ReceiptData } from "./types"
 
+const pad = (n: number, len = 2) => String(n).padStart(len, "0")
+
 function randomReceiptDate(): string {
   const now = new Date()
   const hour = Math.floor(Math.random() * 12) + 8
   const minute = Math.floor(Math.random() * 60)
-  const pad = (n: number) => String(n).padStart(2, "0")
-  const d = pad(now.getDate())
-  const m = pad(now.getMonth() + 1)
-  const y = now.getFullYear()
-  return `${d}.${m}.${y} ${pad(hour)}:${pad(minute)}`
+  return `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()} ${pad(hour)}:${pad(minute)}`
+}
+
+function randomReceiptNumber(): string {
+  return pad(Math.floor(Math.random() * 99999) + 1, 5)
+}
+
+function randomPrice(min: number, max: number): number {
+  return Math.round((min + Math.random() * (max - min)) * 100) / 100
 }
 
 export const defaultReceipt: ReceiptData = {
@@ -17,14 +23,14 @@ export const defaultReceipt: ReceiptData = {
   addressLine2: "10115 Berlin",
   phone: "+49 30 12345678",
   vatNumber: "DE123456789",
-  receiptNumber: "00001",
+  receiptNumber: randomReceiptNumber(),
   date: randomReceiptDate(),
   cashier: "Anna K.",
   items: [
-    { name: "Vollmilch 3,5%", quantity: 2, unitPrice: 1.29 },
-    { name: "Vollkornbrot", quantity: 1, unitPrice: 2.49 },
-    { name: "Deutsche Markenbutter", quantity: 1, unitPrice: 2.19 },
-    { name: "Orangensaft 1L", quantity: 2, unitPrice: 1.99 },
+    { name: "Vollmilch 3,5%", quantity: 2, unitPrice: randomPrice(0.89, 1.79) },
+    { name: "Vollkornbrot", quantity: 1, unitPrice: randomPrice(1.49, 3.49) },
+    { name: "Deutsche Markenbutter", quantity: 1, unitPrice: randomPrice(1.69, 2.99) },
+    { name: "Orangensaft 1L", quantity: 2, unitPrice: randomPrice(1.29, 2.49) },
   ],
   vatRate: 19,
   paymentMethod: "Karte",
