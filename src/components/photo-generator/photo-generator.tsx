@@ -128,11 +128,17 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
       })
       const blob = await generatePhoto(canvas, surface, angle)
       const url = URL.createObjectURL(blob)
+
+      // Try download link first, fall back to opening in new tab (iOS Safari)
       const a = document.createElement("a")
       a.href = url
       a.download = "receipt.jpg"
+      document.body.appendChild(a)
       a.click()
-      URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+
+      // Delay cleanup so mobile browsers can complete the download
+      setTimeout(() => URL.revokeObjectURL(url), 3000)
     } finally {
       setGenerating(false)
     }

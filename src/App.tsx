@@ -76,6 +76,11 @@ export default function App() {
           <SettingsMenu />
         </div>
 
+        {/* Hidden capture target — always mounted so previewRef is available */}
+        <div className="fixed" style={{ left: -9999, top: 0 }}>
+          <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
+        </div>
+
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
           {mobileTab === "form" && (
@@ -86,17 +91,12 @@ export default function App() {
           {mobileTab === "preview" && (
             <div className="flex justify-center bg-muted/30 p-4">
               <div className="rounded-md shadow-lg">
-                <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
+                <ReceiptPreview receipt={receipt} totals={totals} />
               </div>
             </div>
           )}
           {mobileTab === "generate" && (
             <div className="p-4">
-              <div className="mb-4 flex justify-center rounded-lg bg-muted/30 p-4">
-                <div className="origin-top scale-75 rounded-md shadow-lg">
-                  <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
-                </div>
-              </div>
               <PhotoGenerator previewRef={previewRef} />
             </div>
           )}

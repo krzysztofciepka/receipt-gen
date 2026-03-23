@@ -6,7 +6,7 @@ import { formatNumber } from "@/lib/utils"
 interface ReceiptPreviewProps {
   receipt: ReceiptData
   totals: Totals
-  previewRef: React.RefObject<HTMLDivElement | null>
+  previewRef?: React.RefObject<HTMLDivElement | null>
 }
 
 // All styles are inline so html2canvas can capture without Tailwind stylesheets
