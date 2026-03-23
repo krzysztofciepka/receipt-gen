@@ -23,7 +23,7 @@ export interface ReceiptData {
 
 export type SurfacePreset = "wood" | "marble" | "dark" | "granite" | "tablecloth" | "leather" | "concrete"
 
-export type AnglePreset = "flat" | "angled" | "perspective-60" | "perspective-75" | "crumpled"
+export type AnglePreset = "flat" | "angled" | "perspective-60" | "perspective-75" | "crumpled" | "folded-half" | "folded-vertical" | "folded-corner" | "worn"
 
 export interface Totals {
   subtotal: number

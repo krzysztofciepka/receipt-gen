@@ -56,6 +56,44 @@ const angleIcons: Record<AnglePreset, React.ReactNode> = {
       </g>
     </svg>
   ),
+  "folded-half": (
+    <svg viewBox="0 0 40 40" className="size-8">
+      <rect x="10" y="8" width="20" height="12" rx="1" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="10" y="20" width="20" height="14" rx="1" fill="currentColor" opacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="8" y1="20" x2="32" y2="20" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
+      <line x1="14" y1="12" x2="26" y2="12" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      <line x1="14" y1="16" x2="24" y2="16" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+    </svg>
+  ),
+  "folded-vertical": (
+    <svg viewBox="0 0 40 40" className="size-8">
+      <rect x="10" y="8" width="10" height="28" rx="1" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="20" y="8" width="10" height="28" rx="1" fill="currentColor" opacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="6" x2="20" y2="38" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
+      <line x1="12" y1="14" x2="18" y2="14" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      <line x1="12" y1="18" x2="17" y2="18" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      <line x1="12" y1="22" x2="18" y2="22" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+    </svg>
+  ),
+  "folded-corner": (
+    <svg viewBox="0 0 40 40" className="size-8">
+      <path d="M10,8 L30,8 L30,28 L24,28 L24,34 L10,34 Z" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M24,28 L30,28 L24,34 Z" fill="currentColor" opacity="0.25" stroke="currentColor" strokeWidth="1" />
+      <line x1="14" y1="14" x2="26" y2="14" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      <line x1="14" y1="18" x2="24" y2="18" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      <line x1="14" y1="22" x2="26" y2="22" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+    </svg>
+  ),
+  worn: (
+    <svg viewBox="0 0 40 40" className="size-8">
+      <g transform="rotate(6, 20, 20)">
+        <path d="M10,8 Q12,11 10,14 Q12,17 10,20 Q12,23 10,26 Q12,29 10,32 L10,34 L30,34 Q28,31 30,28 Q28,25 30,22 Q28,19 30,16 Q28,13 30,10 L30,8 Q28,10 26,8 Q24,10 22,8 Q20,10 18,8 Q16,10 14,8 Q12,10 10,8 Z" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <line x1="14" y1="15" x2="26" y2="15" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+        <line x1="14" y1="20" x2="24" y2="19.5" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+        <line x1="14" y1="25" x2="26" y2="24.5" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+      </g>
+    </svg>
+  ),
 }
 
 interface PhotoGeneratorProps {

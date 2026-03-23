@@ -22,7 +22,7 @@ function createSurfaceTexture(preset: SurfacePreset): THREE.CanvasTexture {
 function applyPaperCurl(
   geometry: THREE.PlaneGeometry,
   curlIntensity: number,
-  wrinkle: boolean,
+  deform: import("./presets").DeformStyle,
 ): void {
   const positions = geometry.attributes.position
   const params = geometry.parameters
@@ -32,19 +32,44 @@ function applyPaperCurl(
   for (let i = 0; i < positions.count; i++) {
     const x = positions.getX(i)
     const y = positions.getY(i)
-
-    // Gentle upward curl at the long edges (top/bottom of receipt)
-    const yNorm = y / halfH // -1 to 1
-    let z = curlIntensity * yNorm * yNorm
-
-    // Slight lateral curl at left/right edges
     const xNorm = x / halfW // -1 to 1
+    const yNorm = y / halfH // -1 to 1
+
+    // Base curl — gentle upward at edges
+    let z = curlIntensity * yNorm * yNorm
     z += curlIntensity * 0.3 * xNorm * xNorm
 
-    if (wrinkle) {
-      // Subtle low-frequency waviness, not random noise
-      z += curlIntensity * 0.15 * Math.sin(xNorm * 4 + yNorm * 3)
-      z += curlIntensity * 0.1 * Math.sin(xNorm * 2 - yNorm * 5)
+    switch (deform) {
+      case "wrinkle":
+        z += curlIntensity * 0.15 * Math.sin(xNorm * 4 + yNorm * 3)
+        z += curlIntensity * 0.1 * Math.sin(xNorm * 2 - yNorm * 5)
+        break
+
+      case "fold-horizontal":
+        // Sharp fold across the middle horizontally
+        z += curlIntensity * 3 * Math.exp(-yNorm * yNorm * 50)
+        break
+
+      case "fold-vertical":
+        // Sharp fold down the center vertically
+        z += curlIntensity * 3 * Math.exp(-xNorm * xNorm * 50)
+        break
+
+      case "fold-corner":
+        // Fold at bottom-right corner — peaks near (1, -1)
+        {
+          const cx = xNorm - 0.8
+          const cy = yNorm + 0.8
+          const dist = cx * cx + cy * cy
+          z += curlIntensity * 4 * Math.exp(-dist * 8)
+        }
+        break
+
+      case "heavy-crumple":
+        z += curlIntensity * 0.2 * Math.sin(xNorm * 6 + yNorm * 4)
+        z += curlIntensity * 0.15 * Math.sin(xNorm * 3 - yNorm * 7)
+        z += curlIntensity * 0.12 * Math.sin(xNorm * 8 + yNorm * 2)
+        break
     }
 
     positions.setZ(i, z)
@@ -129,7 +154,7 @@ export async function generatePhoto(
   const receiptHeight = receiptWidth * aspect
 
   const receiptGeometry = new THREE.PlaneGeometry(receiptWidth, receiptHeight, 32, 64)
-  applyPaperCurl(receiptGeometry, angleConfig.curlIntensity, angleConfig.wrinkle)
+  applyPaperCurl(receiptGeometry, angleConfig.curlIntensity, angleConfig.deform)
 
   const receiptMaterial = new THREE.MeshStandardMaterial({
     map: receiptTexture,

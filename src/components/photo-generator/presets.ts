@@ -14,6 +14,8 @@ export interface LightingConfig {
   pointPosition: [number, number, number]
 }
 
+export type DeformStyle = "none" | "wrinkle" | "fold-horizontal" | "fold-vertical" | "fold-corner" | "heavy-crumple"
+
 export interface AngleConfig {
   label: string
   cameraPosition: [number, number, number]
@@ -21,7 +23,7 @@ export interface AngleConfig {
   receiptRotationZ: number
   receiptScale: number
   curlIntensity: number
-  wrinkle: boolean
+  deform: DeformStyle
 }
 
 export const surfaceConfigs: Record<SurfacePreset, SurfaceConfig> = {
@@ -112,7 +114,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     receiptRotationZ: 0,
     receiptScale: 1.0,
     curlIntensity: 0.02,
-    wrinkle: false,
+    deform: "none",
   },
   angled: {
     label: "Angled",
@@ -121,7 +123,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     receiptRotationZ: -Math.PI / 20,
     receiptScale: 0.7,
     curlIntensity: 0.05,
-    wrinkle: false,
+    deform: "none",
   },
   "perspective-60": {
     label: "60°",
@@ -130,7 +132,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     receiptRotationZ: 0,
     receiptScale: 1.0,
     curlIntensity: 0.08,
-    wrinkle: false,
+    deform: "none",
   },
   "perspective-75": {
     label: "75°",
@@ -139,7 +141,7 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     receiptRotationZ: 0,
     receiptScale: 1.0,
     curlIntensity: 0.05,
-    wrinkle: false,
+    deform: "none",
   },
   crumpled: {
     label: "Crumpled",
@@ -147,7 +149,43 @@ export const angleConfigs: Record<AnglePreset, AngleConfig> = {
     cameraLookAt: [0, 0, 0],
     receiptRotationZ: Math.PI / 36,
     receiptScale: 1.0,
-    curlIntensity: 0.12,
-    wrinkle: true,
+    curlIntensity: 0.1,
+    deform: "wrinkle",
+  },
+  "folded-half": {
+    label: "Folded Half",
+    cameraPosition: [0, 2.8, 0.01],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: 0,
+    receiptScale: 1.0,
+    curlIntensity: 0.03,
+    deform: "fold-horizontal",
+  },
+  "folded-vertical": {
+    label: "Folded Vertical",
+    cameraPosition: [0, 2.8, 0.01],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: 0,
+    receiptScale: 1.0,
+    curlIntensity: 0.03,
+    deform: "fold-vertical",
+  },
+  "folded-corner": {
+    label: "Folded Corner",
+    cameraPosition: [0, 2.8, 0.01],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: 0,
+    receiptScale: 1.0,
+    curlIntensity: 0.03,
+    deform: "fold-corner",
+  },
+  worn: {
+    label: "Worn",
+    cameraPosition: [0.15, 2.6, 0.3],
+    cameraLookAt: [0, 0, 0],
+    receiptRotationZ: Math.PI / 30,
+    receiptScale: 1.0,
+    curlIntensity: 0.15,
+    deform: "heavy-crumple",
   },
 }
