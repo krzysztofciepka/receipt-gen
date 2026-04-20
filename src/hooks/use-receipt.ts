@@ -1,10 +1,32 @@
-import { useReducer, useMemo } from "react"
-import type { Totals } from "@/types"
+import { useReducer, useMemo, useEffect } from "react"
+import type { ReceiptData, Totals } from "@/types"
 import { receiptReducer, type ReceiptAction } from "@/reducer"
 import { defaultReceipt } from "@/defaults"
 
+const STORAGE_KEY = "receipt-gen:receipt"
+
+function loadInitial(): ReceiptData {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return defaultReceipt
+    const stored = JSON.parse(raw) as Partial<ReceiptData>
+    // Merge with defaults so fields added in newer versions get populated.
+    return { ...defaultReceipt, ...stored }
+  } catch {
+    return defaultReceipt
+  }
+}
+
 export function useReceipt() {
-  const [receipt, dispatch] = useReducer(receiptReducer, defaultReceipt)
+  const [receipt, dispatch] = useReducer(receiptReducer, undefined, loadInitial)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(receipt))
+    } catch {
+      // Ignore quota / access errors (e.g. Safari private mode).
+    }
+  }, [receipt])
 
   const totals: Totals = useMemo(() => {
     const subtotal = receipt.items.reduce(
