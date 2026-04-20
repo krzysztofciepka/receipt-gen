@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react"
-import html2canvas from "html2canvas"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import type { SurfacePreset, AnglePreset } from "@/types"
 import { surfaceConfigs, angleConfigs } from "./presets"
 import { generatePhoto } from "./scene"
+import { capturePreview, triggerDownload } from "@/lib/capture-preview"
 import { cn } from "@/lib/utils"
 
 const angleIcons: Record<AnglePreset, React.ReactNode> = {
@@ -109,36 +109,9 @@ export function PhotoGenerator({ previewRef }: PhotoGeneratorProps) {
     if (!previewRef.current || generating) return
     setGenerating(true)
     try {
-      const canvas = await html2canvas(previewRef.current, {
-        scale: 2,
-        backgroundColor: "#ffffff",
-        useCORS: true,
-        onclone: (clonedDoc) => {
-          // html2canvas cannot parse OKLCH color functions used by Tailwind CSS 4.
-          // Remove all stylesheets and inline a minimal reset on the cloned document
-          // so html2canvas only sees standard hex colors.
-          clonedDoc.querySelectorAll("style, link[rel='stylesheet']").forEach((el) => el.remove())
-          const style = clonedDoc.createElement("style")
-          style.textContent = `
-            *, *::before, *::after { border-color: transparent; outline-color: transparent; }
-            body { background: #ffffff; color: #000000; margin: 0; }
-          `
-          clonedDoc.head.appendChild(style)
-        },
-      })
+      const canvas = await capturePreview(previewRef.current)
       const blob = await generatePhoto(canvas, surface, angle)
-      const url = URL.createObjectURL(blob)
-
-      // Try download link first, fall back to opening in new tab (iOS Safari)
-      const a = document.createElement("a")
-      a.href = url
-      a.download = "receipt.jpg"
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-
-      // Delay cleanup so mobile browsers can complete the download
-      setTimeout(() => URL.revokeObjectURL(url), 3000)
+      triggerDownload(URL.createObjectURL(blob), "receipt.jpg")
     } finally {
       setGenerating(false)
     }

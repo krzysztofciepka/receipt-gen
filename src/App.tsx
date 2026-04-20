@@ -4,6 +4,7 @@ import { useDarkMode } from "@/hooks/use-dark-mode"
 import { ReceiptForm } from "@/components/receipt-form/receipt-form"
 import { ReceiptPreview } from "@/components/receipt-preview"
 import { PhotoGenerator } from "@/components/photo-generator/photo-generator"
+import { PreviewDownloadButton } from "@/components/preview-download-button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,10 +58,11 @@ export default function App() {
           <ReceiptForm receipt={receipt} dispatch={dispatch} totals={totals} />
         </div>
         <div className="flex flex-1 flex-col overflow-y-auto">
-          <div className="flex flex-1 justify-center bg-muted/30 p-6">
-            <div className="self-start rounded-md shadow-lg">
+          <div className="flex flex-1 flex-col items-center gap-3 bg-muted/30 p-6">
+            <div className="rounded-md shadow-lg">
               <ReceiptPreview receipt={receipt} totals={totals} previewRef={previewRef} />
             </div>
+            <PreviewDownloadButton previewRef={previewRef} />
           </div>
           <div className="border-t border-border p-6">
             <PhotoGenerator previewRef={previewRef} />
@@ -89,10 +91,11 @@ export default function App() {
             </div>
           )}
           {mobileTab === "preview" && (
-            <div className="flex justify-center bg-muted/30 p-4">
+            <div className="flex flex-col items-center gap-3 bg-muted/30 p-4">
               <div className="rounded-md shadow-lg">
                 <ReceiptPreview receipt={receipt} totals={totals} />
               </div>
+              <PreviewDownloadButton previewRef={previewRef} />
             </div>
           )}
           {mobileTab === "generate" && (
