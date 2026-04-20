@@ -1,7 +1,7 @@
 import { useMemo, type CSSProperties } from "react"
 import qrcode from "qrcode-generator"
 import type { ReceiptData, Totals } from "@/types"
-import { formatNumber } from "@/lib/utils"
+import { formatCurrency, formatNumber } from "@/lib/utils"
 
 interface ReceiptPreviewProps {
   receipt: ReceiptData
@@ -39,6 +39,9 @@ export function ReceiptPreview({ receipt, totals, previewRef }: ReceiptPreviewPr
   }, [receipt.qrCode])
 
   const separator = (char: string) => char.repeat(32)
+  const money = (v: number) =>
+    formatCurrency(v, receipt.currencySymbol, receipt.currencyPosition, receipt.locale)
+  const num = (v: number) => formatNumber(v, receipt.locale)
 
   return (
     <div ref={previewRef} style={root}>
@@ -46,14 +49,14 @@ export function ReceiptPreview({ receipt, totals, previewRef }: ReceiptPreviewPr
       <div style={centerBold}>{receipt.storeName}</div>
       <div style={center}>{receipt.addressLine1}</div>
       <div style={center}>{receipt.addressLine2}</div>
-      <div style={center}>Tel: {receipt.phone}</div>
-      <div style={center}>USt-IdNr: {receipt.vatNumber}</div>
+      <div style={center}>{receipt.phoneLabel} {receipt.phone}</div>
+      <div style={center}>{receipt.vatNumberLabel} {receipt.vatNumber}</div>
       <div style={sep}>{separator("=")}</div>
 
       {/* Receipt details */}
-      <div>Beleg-Nr: {receipt.receiptNumber}</div>
-      <div>Datum: {receipt.date}</div>
-      <div>Kasse: {receipt.cashier}</div>
+      <div>{receipt.receiptNumberLabel} {receipt.receiptNumber}</div>
+      <div>{receipt.dateLabel} {receipt.date}</div>
+      <div>{receipt.cashierLabel} {receipt.cashier}</div>
       <div style={sep}>{separator("-")}</div>
 
       {/* Items */}
@@ -61,8 +64,8 @@ export function ReceiptPreview({ receipt, totals, previewRef }: ReceiptPreviewPr
         <div key={i}>
           <div>{item.name}</div>
           <div style={row}>
-            <span>&nbsp;&nbsp;{item.quantity} x {formatNumber(item.unitPrice)}</span>
-            <span>{formatNumber(item.quantity * item.unitPrice)}</span>
+            <span>&nbsp;&nbsp;{item.quantity} x {num(item.unitPrice)}</span>
+            <span>{num(item.quantity * item.unitPrice)}</span>
           </div>
         </div>
       ))}
@@ -70,33 +73,33 @@ export function ReceiptPreview({ receipt, totals, previewRef }: ReceiptPreviewPr
 
       {/* Totals */}
       <div style={rowBold}>
-        <span>GESAMT</span>
-        <span>{formatNumber(totals.total)} &euro;</span>
+        <span>{receipt.totalLabel}</span>
+        <span>{money(totals.total)}</span>
       </div>
       <div style={row}>
-        <span>Netto</span>
-        <span>{formatNumber(totals.net)} &euro;</span>
+        <span>{receipt.netLabel}</span>
+        <span>{money(totals.net)}</span>
       </div>
       <div style={row}>
-        <span>MwSt {receipt.vatRate}%</span>
-        <span>{formatNumber(totals.vat)} &euro;</span>
+        <span>{receipt.vatLabel} {receipt.vatRate}%</span>
+        <span>{money(totals.vat)}</span>
       </div>
       <div style={sep}>{separator("-")}</div>
 
       {/* Payment */}
       <div style={row}>
-        <span>Zahlungsart</span>
+        <span>{receipt.paymentMethodLabel}</span>
         <span>{receipt.paymentMethod}</span>
       </div>
-      {receipt.paymentMethod === "Bar" && (
+      {receipt.isCashPayment && (
         <>
           <div style={row}>
-            <span>Bezahlt</span>
-            <span>{formatNumber(totals.paid)} &euro;</span>
+            <span>{receipt.paidLabel}</span>
+            <span>{money(totals.paid)}</span>
           </div>
           <div style={row}>
-            <span>Rückgeld</span>
-            <span>{formatNumber(totals.change)} &euro;</span>
+            <span>{receipt.changeLabel}</span>
+            <span>{money(totals.change)}</span>
           </div>
         </>
       )}

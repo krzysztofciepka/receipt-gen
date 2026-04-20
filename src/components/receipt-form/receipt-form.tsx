@@ -7,6 +7,8 @@ import { ReceiptDetailsSection } from "./receipt-details-section"
 import { ItemsSection } from "./items-section"
 import { PaymentSection } from "./payment-section"
 import { FooterSection } from "./footer-section"
+import { LocalizationSection } from "./localization-section"
+import { LabelsSection } from "./labels-section"
 import type { ReceiptData, Totals } from "@/types"
 import type { ReceiptDispatch } from "@/hooks/use-receipt"
 import { cn } from "@/lib/utils"
@@ -39,6 +41,9 @@ function Section({ title, defaultOpen = true, children }: SectionProps) {
 export function ReceiptForm({ receipt, dispatch, totals }: ReceiptFormProps) {
   return (
     <div className="space-y-2">
+      <Section title="Localization & Currency" defaultOpen={false}>
+        <LocalizationSection receipt={receipt} dispatch={dispatch} />
+      </Section>
       <Section title="Store Information">
         <StoreInfoSection receipt={receipt} dispatch={dispatch} />
       </Section>
@@ -53,6 +58,9 @@ export function ReceiptForm({ receipt, dispatch, totals }: ReceiptFormProps) {
       </Section>
       <Section title="Footer & QR Code">
         <FooterSection receipt={receipt} dispatch={dispatch} />
+      </Section>
+      <Section title="Text Labels" defaultOpen={false}>
+        <LabelsSection receipt={receipt} dispatch={dispatch} />
       </Section>
     </div>
   )

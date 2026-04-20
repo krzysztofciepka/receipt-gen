@@ -16,9 +16,26 @@ export interface ReceiptData {
   items: ReceiptItem[]
   vatRate: number
   paymentMethod: string
+  isCashPayment: boolean
   amountPaid: string
   qrCode: string
   footer: string
+  // Localization
+  currencySymbol: string
+  currencyPosition: "prefix" | "suffix"
+  locale: string
+  // Labels
+  phoneLabel: string
+  vatNumberLabel: string
+  receiptNumberLabel: string
+  dateLabel: string
+  cashierLabel: string
+  totalLabel: string
+  netLabel: string
+  vatLabel: string
+  paymentMethodLabel: string
+  paidLabel: string
+  changeLabel: string
 }
 
 export type SurfacePreset = "wood" | "marble" | "dark" | "granite" | "tablecloth" | "leather" | "concrete"

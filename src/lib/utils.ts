@@ -5,20 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const currencyFormatter = new Intl.NumberFormat("de-DE", {
-  style: "currency",
-  currency: "EUR",
-})
-
-export function formatCurrency(amount: number): string {
-  return currencyFormatter.format(amount)
+export function formatNumber(amount: number, locale = "de-DE"): string {
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount)
 }
 
-const numberFormatter = new Intl.NumberFormat("de-DE", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-})
-
-export function formatNumber(amount: number): string {
-  return numberFormatter.format(amount)
+export function formatCurrency(
+  amount: number,
+  symbol = "€",
+  position: "prefix" | "suffix" = "suffix",
+  locale = "de-DE",
+): string {
+  const formatted = formatNumber(amount, locale)
+  return position === "prefix" ? `${symbol}${formatted}` : `${formatted} ${symbol}`
 }
