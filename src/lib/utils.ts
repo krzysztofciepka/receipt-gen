@@ -6,10 +6,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatNumber(amount: number, locale = "de-DE"): string {
-  return new Intl.NumberFormat(locale, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(amount)
+  const options = { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+  try {
+    return new Intl.NumberFormat(locale, options).format(amount)
+  } catch {
+    return new Intl.NumberFormat("de-DE", options).format(amount)
+  }
 }
 
 export function formatCurrency(
